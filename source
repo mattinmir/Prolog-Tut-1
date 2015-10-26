@@ -1,0 +1,35 @@
+%Find head of list
+head([H|_], H). 
+
+%Find last element of list
+last([T], T).
+last([_|T], E):-
+    last(T, E).
+
+%Remove first and last elements
+middle([_|T], Mid):-
+    removelast(T, Mid).
+removelast([_], []).
+removelast([H|T], [H|M]):-
+    removelast(T,M).
+
+% Find	if	an	element	is	a	member	of	a	list
+iselement(E, [E|T]).
+iselement(E, [_|T]):-
+    iselement(E, T).
+
+% Append two	lists	together	to	form	a	third	list
+append([H1|T1], [H2|T2], [HA|TA])
+
+% reverse	a	list	(using	append,	so	2	arguments)
+% reverse	a	list	(not using	append	and	3	arguments	instead)
+% delete	the	first	occurrence	of	an	element	from	a	list
+% delete	all	occurrences	of	an	element	from	a	list
+% substitute	all	occurrences	of	one	element	for	another	in	a	list
+% test	for	sub-list
+% sieve	a	list	(remove	all	elements	less	than	a	given	element)
+% partition	a	list	into	two	lists
+% sort	a	list	using	quicksort	algorithm	(hint:	partition…)
+% subset
+% intersection
+% union
