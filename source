@@ -19,10 +19,19 @@ iselement(E, [_|T]):-
     iselement(E, T).
 
 % Append two	lists	together	to	form	a	third	list
-append([H1|T1], [H2|T2], [HA|TA])
+append([],A,A).
+append([A|B], C, [A|D]):-
+    append(B,C,D).
 
 % reverse	a	list	(using	append,	so	2	arguments)
+reverse2([], []).
+reverse2([H|T], ReversedList):- %Reverse is the same as reverse T then append it to H
+    reverse2(T, ReversedT), 
+    append(ReversedT, [H], ReversedList). %Why does H need sq brackets??
+    
 % reverse	a	list	(not using	append	and	3	arguments	instead)
+
+
 % delete	the	first	occurrence	of	an	element	from	a	list
 % delete	all	occurrences	of	an	element	from	a	list
 % substitute	all	occurrences	of	one	element	for	another	in	a	list
