@@ -30,10 +30,26 @@ reverse2([H|T], ReversedList):- %Reverse is the same as reverse T then append it
     append(ReversedT, [H], ReversedList). %Why does H need sq brackets??
     
 % reverse	a	list	(not using	append	and	3	arguments	instead)
+reverse3([],A,A).
+reverse3([H|T], A, X):-
+    reverse3(T, [H|A], X).
+reverse(L, R):-
+    reverse3(L,[],R).
 
+% delete	the	first	occurrence	of	an	element	from a	list
+remove(Element, [], []).
+remove(Element, [Element|T], T). % If head is desired element, remove it
+remove(Element,[NotElement|T], [NotElement|ShortTail]):- % if not, 
+    remove(Element, T, ShortTail). % remove element from tail, and append original head to front of the result
 
-% delete	the	first	occurrence	of	an	element	from	a	list
 % delete	all	occurrences	of	an	element	from	a	list
+removeall(Element, [], []).
+removeall(Element, [Element|T], T2):- % If head is desired element, remove it
+    !,
+    removeall(Element, T, T2). % and remove all the others too
+removeall(Element,[NotElement|T], [NotElement|ShortTail]):- % if not, 
+    removeall(Element, T, ShortTail). % remove element from tail, and append original head to front of the result
+
 % substitute	all	occurrences	of	one	element	for	another	in	a	list
 % test	for	sub-list
 % sieve	a	list	(remove	all	elements	less	than	a	given	element)
