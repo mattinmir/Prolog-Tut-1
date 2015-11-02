@@ -51,9 +51,29 @@ removeall(Element,[NotElement|T], [NotElement|ShortTail]):- % if not,
     removeall(Element, T, ShortTail). % remove element from tail, and append original head to front of the result
 
 % substitute	all	occurrences	of	one	element	for	another	in	a	list
+sub(OldElem, NewElem, [], []).
+sub(OldElem, NewElem, [OldElem|T], [NewElem|SubbedList]):- % if ythe desired elem is at the head, replace it,
+    sub(OldElem, NewElem, T, SubbedList). % and replace it also in the rest of the list 
+
 % test	for	sub-list
+subtest([], Anylist). % Base case for when sublist has been fully popped off of full list and you are left comparing [] and Tfull. Debug to see what I mean
+subtest([H|Tsub], [H|Tfull]):-
+    subtest(Tsub, Tfull).
+subtest([H|Tsub], [NotH|Tfull]):-
+    subtest([H|Tsub], Tfull).
+
 % sieve	a	list	(remove	all	elements	less	than	a	given	element)
+sieve(Threshold, [], []).
+sieve(Threshold, [H|T], [H|Sievedlist]):-
+    H>=Threshold,
+    sieve(Threshold, T, Sievedlist).
+sieve(Threshold, [H|T], Sievedlist):-
+    H<Threshold,
+    sieve(Threshold, T, Sievedlist).
+
 % partition	a	list	into	two	lists
+partition([
+
 % sort	a	list	using	quicksort	algorithm	(hint:	partition…)
 % subset
 % intersection
